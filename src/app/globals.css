@@ -1,0 +1,343 @@
+
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --planora-page: #f7f8f6;
+  --planora-surface: #ffffff;
+  --planora-surface-muted: #f0f4e8;
+  --planora-border: #e5eae1;
+  --planora-text: #202820;
+  --planora-muted: #737d73;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--planora-page);
+  color: var(--planora-text);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #101713;
+  --foreground: #edf2eb;
+  --planora-page: #101713;
+  --planora-surface: #1a2820;
+  --planora-surface-muted: #223128;
+  --planora-border: #34443a;
+  --planora-text: #edf2eb;
+  --planora-muted: #b4c0b5;
+}
+
+html[data-theme="dark"] body {
+  background: var(--planora-page);
+  color: var(--planora-text);
+}
+
+/* ---------------------------------------------------------
+   DARK MODE — primary page and card surfaces
+   Existing pages use explicit Tailwind hex color classes.
+   These overrides let us preserve the existing UI markup.
+   --------------------------------------------------------- */
+
+html[data-theme="dark"] :is(
+  .bg-\[\#F7F8F6\],
+  .bg-\[\#F4F6F1\]
+) {
+  background-color: var(--planora-page) !important;
+}
+
+html[data-theme="dark"] :is(
+  .bg-white,
+  .bg-\[\#FAFBF8\],
+  .bg-\[\#F8FAF5\],
+  .bg-\[\#F6F8F3\]
+) {
+  background-color: var(--planora-surface) !important;
+}
+
+/* Keep white buttons on the dark-green sidebar readable. */
+html[data-theme="dark"] .bg-\[\#172922\] .bg-white {
+  background-color: #ffffff !important;
+  color: #172922 !important;
+}
+
+html[data-theme="dark"] :is(
+  .bg-\[\#F0F4E8\],
+  .bg-\[\#EEF4E5\],
+  .bg-\[\#EFF5E8\],
+  .bg-\[\#EFF4E9\],
+  .bg-\[\#EDF4E5\],
+  .bg-\[\#F5F8EF\],
+  .bg-\[\#F1F4EC\],
+  .bg-\[\#F0F3EC\],
+  .bg-\[\#F7F8F4\],
+  .bg-\[\#F4F8ED\],
+  .bg-\[\#F0F8E4\],
+  .bg-\[\#EAEFE5\],
+  .bg-\[\#E9F1DF\],
+  .bg-\[\#E3EFEA\],
+  .bg-\[\#F7EBDD\],
+  .bg-\[\#EEE8F7\],
+  .bg-\[\#E7F1E9\],
+  .bg-\[\#F0F4E9\],
+  .bg-\[\#EEF1EA\],
+  .bg-\[\#EDF0EA\],
+  .bg-\[\#F5F7F2\]
+) {
+  background-color: var(--planora-surface-muted) !important;
+}
+
+/* Inputs and selects need a readable surface in dark mode. */
+html[data-theme="dark"] :is(input, textarea, select) {
+  color: #edf2eb;
+  border-color: var(--planora-border);
+}
+
+html[data-theme="dark"] :is(input, textarea, select)::placeholder {
+  color: #9caa9e;
+}
+
+html[data-theme="dark"] option {
+  background-color: #1a2820;
+  color: #edf2eb;
+}
+
+/* ---------------------------------------------------------
+   DARK MODE — readable foreground colors
+   Lime accents remain unchanged for visual continuity.
+   --------------------------------------------------------- */
+
+html[data-theme="dark"] :is(
+  .text-\[\#202820\],
+  .text-\[\#26352A\],
+  .text-\[\#28372C\],
+  .text-\[\#26392B\],
+  .text-\[\#283A2C\],
+  .text-\[\#24352A\],
+  .text-\[\#304532\],
+  .text-\[\#435B3B\],
+  .text-\[\#39523B\],
+  .text-\[\#455144\],
+  .text-\[\#526250\],
+  .text-\[\#576256\],
+  .text-\[\#4B5948\],
+  .text-\[\#385138\]
+) {
+  color: #edf2eb !important;
+}
+
+html[data-theme="dark"] :is(
+  .text-\[\#737D73\],
+  .text-\[\#7D877B\],
+  .text-\[\#7E887B\],
+  .text-\[\#80897F\],
+  .text-\[\#818A80\],
+  .text-\[\#828B80\],
+  .text-\[\#879084\],
+  .text-\[\#849084\],
+  .text-\[\#8A9388\],
+  .text-\[\#8A9387\],
+  .text-\[\#929B90\],
+  .text-\[\#969F94\],
+  .text-\[\#879675\],
+  .text-\[\#697468\],
+  .text-\[\#697965\],
+  .text-\[\#72806D\],
+  .text-\[\#6F7B6C\],
+  .text-\[\#7B8779\],
+  .text-\[\#7F897B\],
+  .text-\[\#818A80\],
+  .text-\[\#828B80\]
+) {
+  color: #b4c0b5 !important;
+}
+
+html[data-theme="dark"] :is(
+  .text-\[\#5B7552\],
+  .text-\[\#5F7749\],
+  .text-\[\#627C4A\],
+  .text-\[\#587345\],
+  .text-\[\#587B3E\],
+  .text-\[\#69814F\],
+  .text-\[\#6A844F\],
+  .text-\[\#6D8C4C\],
+  .text-\[\#718A56\],
+  .text-\[\#71856A\],
+  .text-\[\#6E8164\],
+  .text-\[\#66834D\],
+  .text-\[\#3E8069\],
+  .text-\[\#45836D\],
+  .text-\[\#829849\]
+) {
+  color: #b8d79a !important;
+}
+
+html[data-theme="dark"] :is(
+  .border-\[\#E5EAE1\],
+  .border-\[\#E2E8DE\],
+  .border-\[\#E8EBE5\],
+  .border-\[\#E6EAE2\],
+  .border-\[\#E7EAE3\],
+  .border-\[\#E3E9D8\],
+  .border-\[\#E1E8D8\],
+  .border-\[\#DDE3D8\],
+  .border-\[\#DDE4D8\],
+  .border-\[\#E7EBE3\],
+  .border-\[\#EEF0EA\],
+  .border-\[\#EDF0E9\],
+  .border-\[\#E4E9DF\],
+  .border-\[\#DCE4D5\],
+  .border-\[\#DCE8C4\],
+  .border-\[\#DDE7D3\],
+  .border-\[\#E6EAE2\]
+) {
+  border-color: var(--planora-border) !important;
+}
+
+/* Keep the account panel and brand sidebar dark and distinct. */
+html[data-theme="dark"] .bg-\[\#172922\] {
+  background-color: #0b110d;
+}
+
+/* Theme controls remain readable in either mode. */
+html[data-theme="dark"] .planora-floating-controls {
+  border-color: var(--planora-border);
+  background-color: #1a2820;
+}
+
+html[data-theme="dark"] .planora-floating-controls button:not(.bg-\[\#172922\]) {
+  color: #edf2eb;
+  border-color: var(--planora-border);
+}
+
+html[data-theme="dark"] .planora-floating-controls button.bg-\[\#172922\] {
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------
+   PRINT / SAVE AS PDF
+   Print only the generated AI plan.
+   In the browser print dialog, select "Save as PDF".
+   --------------------------------------------------------- */
+
+@page {
+  size: auto;
+  margin: 16mm;
+}
+
+@media print {
+  html,
+  body {
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #202820 !important;
+    overflow: visible !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  #ai-plan-print-area,
+  #ai-plan-print-area * {
+    visibility: visible !important;
+    color: #202820 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  #ai-plan-print-area {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    color: #202820 !important;
+  }
+
+  #ai-plan-print-area .bg-\[\#172922\] {
+    border-bottom: 1px solid #d5dcd3 !important;
+    background: #ffffff !important;
+    color: #202820 !important;
+  }
+
+  #ai-plan-print-area .text-\[\#C4D1C7\],
+  #ai-plan-print-area .text-\[\#CBD6CE\],
+  #ai-plan-print-area .text-white {
+    color: #202820 !important;
+  }
+
+  #ai-plan-print-area [class*="max-h-"] {
+    max-height: none !important;
+  }
+
+  #ai-plan-print-area [class*="overflow-"] {
+    overflow: visible !important;
+  }
+
+  #ai-plan-print-area .print-hide,
+  .planora-floating-controls {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  #ai-plan-print-area article {
+    font-size: 10.5pt !important;
+    line-height: 1.55 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  #ai-plan-print-area h1,
+  #ai-plan-print-area h2,
+  #ai-plan-print-area h3 {
+    break-after: avoid-page;
+  }
+
+  #ai-plan-print-area table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    break-inside: auto;
+  }
+
+  #ai-plan-print-area tr,
+  #ai-plan-print-area img {
+    break-inside: avoid;
+  }
+
+  #ai-plan-print-area th,
+  #ai-plan-print-area td {
+    border: 1px solid #d5dcd3 !important;
+    padding: 5px !important;
+  }
+
+  a {
+    color: #202820 !important;
+    text-decoration: none !important;
+  }
+}
