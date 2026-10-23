@@ -204,6 +204,7 @@ export default function Home() {
     Record<string, SavedPlanReference>
   >({});
   const [eventsLoaded, setEventsLoaded] = useState(false);
+  const [today, setToday] = useState("");
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedEventType, setSelectedEventType] =
@@ -227,6 +228,11 @@ export default function Home() {
     guests: "50",
     budget: "50000",
   });
+
+  // Set the current date in the browser so static prerendering remains deterministic.
+  useEffect(() => {
+    setToday(new Date().toISOString().slice(0, 10));
+  }, []);
 
   // Load the signed-in user's cloud workspace and import legacy local data.
   useEffect(() => {
@@ -388,8 +394,6 @@ export default function Home() {
     };
   }, []);
 
-  const today = new Date().toISOString().slice(0, 10);
-
   const totalBudget = events.reduce(
     (total, event) => total + event.budget,
     0
@@ -407,7 +411,7 @@ export default function Home() {
   const pendingTasks = allTasks.length - completedTasks;
 
   const nextEvent = [...events]
-    .filter((event) => event.date >= today)
+    .filter((event) => today !== "" && event.date >= today)
     .sort((a, b) => a.date.localeCompare(b.date))[0];
 
   function openCreateModal(type?: EventType) {
