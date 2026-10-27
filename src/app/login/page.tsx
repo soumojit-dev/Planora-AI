@@ -142,7 +142,10 @@ export default function LoginPage() {
               full_name: normalizedName,
               name: normalizedName,
             },
-            emailRedirectTo: `${window.location.origin}/auth/callback`,
+            emailRedirectTo: new URL(
+              "/auth/callback",
+              process.env.NEXT_PUBLIC_SITE_URL?.trim() || window.location.origin
+            ).toString(),
           },
         });
 
